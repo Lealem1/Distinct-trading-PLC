@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Distinct Trading PLC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #1a1a2e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            background: #1a3a2a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Logo styles - CIRCLE LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c67b3d;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+            color: white;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #c67b3d;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #9c5a2a;
+        }
+
+        .product-detail {
+            padding: 60px 0;
+        }
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .product-header h1 {
+            font-size: 48px;
+            color: #1a3a2a;
+            margin-bottom: 15px;
+        }
+
+        .product-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .product-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .product-image {
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            min-height: 300px;
+        }
+
+        .product-description h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1a3a2a;
+        }
+
+        .product-description p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .specs {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .specs h3 {
+            margin-bottom: 20px;
+        }
+
+        .specs ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .specs li {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .inquiry-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #c67b3d;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .inquiry-btn:hover {
+            background: #9c5a2a;
+        }
+
+        footer {
+            background: #0d2818;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .product-info {
+                grid-template-columns: 1fr;
+            }
+            .product-header h1 {
+                font-size: 32px;
+            }
+            .specs ul {
+                grid-template-columns: 1fr;
+            }
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            .logo h1 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Distinct Trading Logo" class="logo-img" onerror="this.src='https://placehold.co/50x50?text=DT'">
+            <h1>DISTINCT TRADING PLC</h1>
+        </div>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+</nav>
+
+<section class="product-detail">
+    <div class="container">
+        <div id="productContent" class="product-content">
+            <!-- Content loads dynamically -->
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Distinct Trading PLC. All rights reserved.</p>
+</footer>
+
+<script>
+    // Complete Product Database
+    const products = {
+        // EXPORT PRODUCTS
+        sesame: {
+            name: "Sesame Seeds",
+            description: "Distinct Trading PLC exports premium quality whitish sesame seeds from Ethiopia. We offer both Humera and Wolega types, known for their high oil content, excellent taste, and superior quality. Our sesame seeds are carefully processed using modern cleaning machines in Humera and Metema.",
+            features: ["Humera type - Premium variety", "Wolega type - High oil content", "Whitish color, excellent quality", "99% purity guaranteed", "Processed with modern cleaning machines", "Sourced from our 2,000 hectare farm"],
+            image: "images/sesame.jpg"
+        },
+        coffee: {
+            name: "Premium Ethiopian Coffee",
+            description: "Ethiopia is the birthplace of coffee, and Distinct Trading PLC exports premium Ethiopian coffee beans. Our coffee is known for its rich aroma, complex flavor profiles, and exceptional quality that coffee lovers around the world seek.",
+            features: ["100% Arabica", "Rich, complex flavor profile", "Grown in Ethiopian highlands", "Carefully hand-picked", "Premium grade", "Various processing methods available"],
+            image: "images/coffee.jpg"
+        },
+        soybeans: {
+            name: "Soybeans",
+            description: "Ethiopian soybeans are high-quality, non-GMO soybeans grown in the fertile highlands of Ethiopia. They are rich in protein and oil content, making them ideal for animal feed, edible oil production, and various food applications.",
+            features: ["Non-GMO certified", "High protein content (38-42%)", "High oil content (18-22%)", "Ethiopian origin", "Export quality", "Ideal for feed and food industries"],
+            image: "images/soybeans.jpg"
+        },
+        mung: {
+            name: "Mung Seed (ማሾ)",
+            description: "Our premium quality green mung beans are carefully selected and processed. These small, oval-shaped beans with bright green skin are an emerging crop in Ethiopia with excellent results.",
+            features: ["Bright green skin", "Excellent sprouting variety", "Non-GMO", "Ethiopian origin", "Carefully sorted and cleaned", "Export quality standard"],
+            image: "images/mung.jpg"
+        },
+        nug: {
+            name: "ኑግ (Nug / Niger Seed)",
+            description: "Nug (Niger seed) is an important oilseed crop in Ethiopia. Our premium quality nug seeds are used for high-quality oil production and bird feed.",
+            features: ["High oil content", "Premium quality seeds", "Ethiopian origin", "Ideal for oil pressing", "Also used for bird feed", "Carefully processed"],
+            image: "images/nug.jpg"
+        },
+        glue: {
+            name: "Glue (ሙጫ)",
+            description: "We supply industrial-grade adhesive products (glue) for various manufacturing applications. Our glue products meet international quality standards.",
+            features: ["Industrial grade quality", "Multiple application uses", "Consistent quality", "Competitive pricing", "Available in bulk quantities"],
+            image: "images/glue.jpg"
+        },
+        kidneybeans: {
+            name: "Red Kidney Beans",
+            description: "Our premium red kidney beans are sourced from Gojam, Gondar, and Southern Ethiopia. These beans are known for their rich color and excellent texture.",
+            features: ["Sourced from Gojam, Gondar & Southern Ethiopia", "Rich red color", "Excellent cooking quality", "High nutritional value", "Carefully sorted", "Export quality standard"],
+            image: "images/kidneybeans.jpg"
+        },
+        pulses: {
+            name: "Seasonal Pulses & Crops",
+            description: "We export various seasonal pulses and crops sourced from prime agricultural regions including Gojam, Gondar, and Southern Ethiopia.",
+            features: ["Sourced from Gojam, Gondar & Southern Ethiopia", "Seasonal availability", "Premium quality", "Competitive pricing", "Export standard packaging"],
+            image: "images/pulses.jpg"
+        },
+        
+        // IMPORT PRODUCTS
+        palmoil: {
+            name: "Palm Oil",
+            description: "We import premium quality palm oil to serve the Ethiopian market. With a capacity of 200 containers (4 million liters) per month, we ensure consistent supply of high-quality palm oil.",
+            features: ["200 containers / 4 million liters per month", "Food grade quality", "Consistent supply", "Competitive bulk pricing", "Ideal for cooking and food processing"],
+            image: "images/palmoil.jpg"
+        },
+        sunfloweroil: {
+            name: "Sunflower Oil",
+            description: "We import premium sunflower oil, a healthy cooking oil option for the Ethiopian market. Sunflower oil is rich in vitamin E and has a light taste.",
+            features: ["Premium quality", "Rich in Vitamin E", "Light taste", "Healthy cooking oil option", "Competitive pricing", "Consistent supply"],
+            image: "images/sunfloweroil.jpg"
+        },
+        steelbars: {
+            name: "Steel Bars",
+            description: "We import various sizes of steel bars, primarily sourced from Turkey. Our steel products range from 6mm to 24mm, suitable for construction.",
+            features: ["Sizes: 6mm to 24mm", "Sourced from Turkey", "High-quality steel", "Construction grade", "Industrial applications", "Competitive pricing"],
+            image: "images/steelbars.jpg"
+        },
+        trucks: {
+            name: "Heavy-Duty Trucks",
+            description: "We import heavy-duty trucks and industrial vehicles for commercial use. Our vehicles are selected for durability, fuel efficiency, and reliability.",
+            features: ["Heavy-duty trucks", "Industrial vehicles", "Fuel efficient", "Durable construction", "Reliable performance", "Competitive pricing"],
+            image: "images/trucks.jpg"
+        },
+        ckd: {
+            name: "CKD Products",
+            description: "We import Completely Knocked Down (CKD) products for vehicle assembly plants in Ethiopia. These products support local manufacturing.",
+            features: ["Completely Knocked Down format", "For vehicle assembly plants", "Complete component sets", "Support local manufacturing", "Quality assured"],
+            image: "images/ckd.jpg"
+        },
+        tires: {
+            name: "Tires",
+            description: "We import quality tires for transport vehicles, ensuring safety and reliability on Ethiopian roads.",
+            features: ["For transport vehicles", "Durable construction", "Safety certified", "Competitive pricing", "Various sizes available", "Reliable brands"],
+            image: "images/tires.jpg"
+        },
+        agrochemicals: {
+            name: "Agricultural Chemicals",
+            description: "We import essential agricultural chemicals including pesticides, herbicides, and fertilizers to support Ethiopian farmers.",
+            features: ["Pesticides available", "Herbicides available", "Fertilizers available", "Quality assured", "Competitive pricing", "Support Ethiopian agriculture"],
+            image: "images/agrochemicals.jpg"
+        },
+        ppbags: {
+            name: "PP Bags Raw Materials",
+            description: "We supply raw materials for PP (polypropylene) bags manufacturing, supporting local bag production industries.",
+            features: ["For PP bags factory", "Quality raw materials", "Consistent supply", "Competitive pricing", "Support local manufacturing"],
+            image: "images/ppbags.jpg"
+        },
+        soapmaterials: {
+            name: "Soap Factory Raw Materials",
+            description: "We supply raw materials for soap production, supporting the local soap manufacturing industry in Ethiopia.",
+            features: ["For soap factory", "Quality raw materials", "Consistent supply", "Competitive pricing", "Support local manufacturing"],
+            image: "images/soapmaterials.jpg"
+        },
+        cartonmaterials: {
+            name: "Carton Factory Raw Materials",
+            description: "We supply raw materials for carton manufacturing, supporting local packaging industries in Ethiopia.",
+            features: ["For carton factory", "Quality raw materials", "Consistent supply", "Competitive pricing", "Support local packaging industry"],
+            image: "images/cartonmaterials.jpg"
+        },
+        paperparts: {
+            name: "Paper & Spare Parts",
+            description: "We supply industrial paper products and spare parts for various manufacturing applications.",
+            features: ["Industrial paper products", "Spare parts for machinery", "Quality assured", "Competitive pricing", "Reliable supply"],
+            image: "images/paperparts.jpg"
+        },
+        // INDUSTRIAL CHEMICALS
+        induchem: {
+            name: "Industrial Chemicals",
+            description: "We supply high-quality industrial chemicals for various manufacturing and processing industries. Our industrial chemicals meet international quality standards and are suitable for textile, leather, paint, water treatment, and other industrial applications.",
+            features: ["High purity grade (99%+)", "Meets international quality standards", "Bulk supply available", "Competitive pricing", "Suitable for multiple industries", "Consistent quality assurance","Safe packaging and delivery" ],
+            image: "images/induchem.jpg"
+        },
+        // PLASTIC RAW MATERIALS
+        plasticraw: {
+            name: "Plastic Raw Materials",
+            description: "High-quality plastic raw materials for plastic manufacturing industries. We supply various grades of plastic raw materials suitable for injection molding, extrusion, blow molding, and other plastic processing applications.",
+            features: [
+                "Premium quality plastic granules",
+                "Multiple grades available (PP, PE, PVC)",
+                "For injection molding",
+                "For extrusion processes",
+                "For blow molding",
+                "Consistent quality",
+                "Competitive pricing",
+                "Bulk supply available"
+            ],
+            image: "images/plasticraw.jpg"
+        }
+    };
+
+    // Get product from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    const productContainer = document.getElementById('productContent');
+
+    if (productId && products[productId]) {
+        const product = products[productId];
+        
+        productContainer.innerHTML = `
+            <div class="product-header">
+                <h1>${product.name}</h1>
+            </div>
+            <div class="product-info">
+                <div class="product-image" style="background-image: url('${product.image}');"></div>
+                <div class="product-description">
+                    <h3>Product Overview</h3>
+                    <p>${product.description}</p>
+                    <div class="specs">
+                        <h3>Key Features</h3>
+                        <ul>
+                            ${product.features.map(feature => `<li><i class="fas fa-check" style="color:#1a3a2a; margin-right:10px;"></i> ${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="inquiry-btn"><i class="fas fa-envelope"></i> Inquire About This Product</a>
+                </div>
+            </div>
+        `;
+    } else {
+        productContainer.innerHTML = `
+            <div style="text-align: center; padding: 60px;">
+                <h2>Product Not Found</h2>
+                <p>Please check the product link or return to the home page.</p>
+                <a href="index.html" class="back-btn" style="margin-top: 20px; display: inline-block;">Back to Home</a>
+            </div>
+        `;
+    }
+</script>
+</body>
+</html>

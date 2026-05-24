@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Products - Distinct Trading PLC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f5f5f0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        header { background: #1a3a2a; color: white; padding: 20px 0; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Logo styles - CIRCLE LOGO */
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        
+        .logo-img { 
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c67b3d;
+        }
+        
+        .logo-text h1 { 
+            font-size: 22px; 
+            font-weight: 800; 
+            letter-spacing: 1px; 
+        }
+        
+        .logo-text p { 
+            font-size: 10px; 
+            letter-spacing: 2px; 
+            opacity: 0.8; 
+        }
+        
+        .back-btn { padding: 10px 25px; background: #c67b3d; color: white; text-decoration: none; border-radius: 30px; }
+        .back-btn:hover { background: #9c5a2a; }
+        
+        .export-page { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('images/farm3.JPG'); background-size: cover; background-position: center; background-attachment: fixed; padding: 120px 0 60px; }
+        .page-title { text-align: center; color: white; margin-bottom: 50px; }
+        .page-title h1 { font-size: 48px; margin-bottom: 10px; }
+        .page-title p { font-size: 18px; opacity: 0.9; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .product-card { background: rgba(255,255,255,0.95); border-radius: 15px; overflow: hidden; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-image { height: 220px; background-size: cover; background-position: center; }
+        .product-info { padding: 20px; text-align: center; }
+        .product-info h3 { font-size: 22px; color: #1a3a2a; margin-bottom: 10px; }
+        .product-info p { color: #6c757d; margin-bottom: 15px; }
+        .btn-details { display: inline-block; padding: 8px 20px; background: transparent; border: 2px solid #c67b3d; color: #c67b3d; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-details:hover { background: #c67b3d; color: white; }
+        
+        footer { background: #0d2818; color: #d4c4b5; text-align: center; padding: 30px; margin-top: 60px; }
+        
+        @media (max-width: 768px) { 
+            .page-title h1 { font-size: 32px; } 
+            .product-grid { grid-template-columns: 1fr; }
+            .logo-img { 
+                width: 40px; 
+                height: 40px; 
+            }
+            .logo-text h1 { 
+                font-size: 16px; 
+            }
+            .logo-text p { 
+                font-size: 8px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://placehold.co/55x55?text=DT'">
+            <div class="logo-text">
+                <h1>DISTINCT TRADING PLC</h1>
+                <p>IMPORT & EXPORT PLC</p>
+            </div>
+        </div>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+</header>
+
+<section class="export-page">
+    <div class="container">
+        <div class="page-title">
+            <h1>Export Products</h1>
+            <p>Premium Ethiopian agricultural commodities for global markets</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/sesame.jpg');"></div>
+                <div class="product-info">
+                    <h3>Sesame Seeds</h3>
+                    <p>Whitish sesame seeds - Humera & Wolega types. Premium quality.</p>
+                    <a href="products.html?product=sesame" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/coffee.jpg');"></div>
+                <div class="product-info">
+                    <h3>Coffee</h3>
+                    <p>Premium Ethiopian Arabica coffee from Yirgacheffe, Sidama, Limmu.</p>
+                    <a href="products.html?product=coffee" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/soybeans.jpg');"></div>
+                <div class="product-info">
+                    <h3>Soybeans</h3>
+                    <p>Non-GMO soybeans, high protein content (38-42%).</p>
+                    <a href="products.html?product=soybeans" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/mung.jpg');"></div>
+                <div class="product-info">
+                    <h3>Mung Seed (ማሾ)</h3>
+                    <p>Premium quality green mung beans for sprouting and cooking.</p>
+                    <a href="products.html?product=mung" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/nug.jpg');"></div>
+                <div class="product-info">
+                    <h3>Nug / Niger Seed (ኑግ)</h3>
+                    <p>High-quality oil seeds for edible oil production.</p>
+                    <a href="products.html?product=nug" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/glue.jpg');"></div>
+                <div class="product-info">
+                    <h3>Glue (ሙጫ)</h3>
+                    <p>Industrial grade adhesive products for manufacturing.</p>
+                    <a href="products.html?product=glue" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/kidneybeans.jpg');"></div>
+                <div class="product-info">
+                    <h3>Red Kidney Beans</h3>
+                    <p>Sourced from Gojam, Gondar & Southern Ethiopia.</p>
+                    <a href="products.html?product=kidneybeans" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/pulses.jpg');"></div>
+                <div class="product-info">
+                    <h3>Seasonal Pulses</h3>
+                    <p>Various crops from Gojam, Gondar & Southern Ethiopia.</p>
+                    <a href="products.html?product=pulses" class="btn-details">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Distinct Trading PLC. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

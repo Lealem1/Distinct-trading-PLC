@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us - Distinct Trading PLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fffaf5;
+            color: #2c1810;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        header {
+            background: #1a3a2a;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Circle Logo */
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c67b3d;
+        }
+
+        .logo h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo p {
+            font-size: 10px;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* Navigation - Always visible on all devices */
+        .top-nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .top-nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #c67b3d;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .back-home-btn i {
+            margin-right: 8px;
+        }
+
+        .back-home-btn:hover {
+            background: #9c5a2a;
+            transform: translateY(-2px);
+        }
+
+        /* Hide hamburger menu - completely removed */
+        .mobile-menu {
+            display: none;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 100%);
+            color: white;
+            padding: 100px 0 40px;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .leadership-section {
+            padding: 60px 0;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .leader-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .leader-image {
+            height: 350px;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .leader-info {
+            padding: 25px;
+        }
+
+        .leader-info h3 {
+            font-size: 24px;
+            color: #1a3a2a;
+            margin-bottom: 5px;
+        }
+
+        .leader-info .title {
+            color: #c67b3d;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .leader-info p {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .company-story {
+            background: #f5ede4;
+            padding: 60px 0;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-content h2 {
+            font-size: 32px;
+            color: #1a3a2a;
+            margin-bottom: 20px;
+        }
+
+        .story-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #c67b3d;
+        }
+
+        .mv-card h4 {
+            color: #1a3a2a;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .company-values {
+            padding: 60px 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .value-card i {
+            font-size: 48px;
+            color: #c67b3d;
+            margin-bottom: 15px;
+        }
+
+        .value-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a3a2a;
+        }
+
+        footer {
+            background: #0d2818;
+            color: #d4c4b5;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Responsive Design - No hamburger, always show nav */
+        @media (max-width: 768px) {
+            .top-nav {
+                display: flex;
+                position: static;
+                background: transparent;
+                padding: 0;
+                flex-direction: row;
+                width: auto;
+            }
+            
+            .top-nav a {
+                margin: 0;
+            }
+            
+            .page-header h1 { 
+                font-size: 32px; 
+            }
+            
+            .story-grid { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .mission-vision { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .leader-image { 
+                height: 280px; 
+            }
+            
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .logo h1 { 
+                font-size: 16px; 
+            }
+            
+            .logo p { 
+                font-size: 8px; 
+            }
+            
+            .page-header {
+                padding: 80px 0 40px;
+            }
+            
+            .back-home-btn {
+                padding: 6px 15px;
+                font-size: 12px;
+            }
+            
+            .back-home-btn i {
+                margin-right: 5px;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .top-nav {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://placehold.co/55x55?text=DT'">
+            <div>
+                <h1>DISTINCT TRADING</h1>
+                <p>IMPORT & EXPORT PLC</p>
+            </div>
+        </div>
+        <!-- No hamburger menu - direct Back to Home button always visible -->
+        <div class="top-nav" id="topNav">
+            <a href="index.html" class="back-home-btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="page-header">
+    <div class="container">
+        <h1>About Distinct Trading PLC</h1>
+        <p>Building Ethiopia's trade future with excellence and integrity</p>
+    </div>
+</section>
+
+<section class="leadership-section">
+    <div class="container">
+        <h2 style="text-align: center; font-size: 36px; color: #1a3a2a; margin-bottom: 40px;">Our Leadership</h2>
+        <div class="leadership-grid">
+            <!-- CEO - Betselot W/Akililu -->
+            <div class="leader-card">
+                <div class="leader-image">
+                    <img src="images/betselot.png" alt="CEO - Eng Betselot W Aklilu" onerror="this.src='https://via.placeholder.com/400x350?text=CEO+Photo+Not+Found'">
+                </div>
+                <div class="leader-info">
+                    <h3>Eng Betselot W Aklilu</h3>
+                    <div class="title">Chief Executive Officer</div>
+                    <p>Leading Distinct Trading PLC with vision and strategic direction, driving growth in Ethiopia's import-export sector.</p>
+                </div>
+            </div>
+            
+            <!-- Deputy CEO - Tesfaw W/Tefera -->
+            <div class="leader-card">
+                <div class="leader-image">
+                    <img src="images/tesfaw.jpg" alt="Deputy CEO - Msc Tesfaw W Tefera" onerror="this.src='https://via.placeholder.com/400x350?text=Deputy+CEO+Photo+Not+Found'">
+                </div>
+                <div class="leader-info">
+                    <h3>Msc Tesfaw W Tefera</h3>
+                    <div class="title">Deputy Chief Executive Officer</div>
+                    <p>Overseeing daily operations and ensuring operational excellence across all business units.</p>
+                </div>
+            </div>
+            
+            <!-- Export Manager - Fasil Efrem -->
+            <div class="leader-card">
+                <div class="leader-image">
+                    <img src="images/fasil.jpg" alt="Export Manager - Fasil Efrem" onerror="this.src='https://via.placeholder.com/400x350?text=Export+Manager+Photo+Not+Found'">
+                </div>
+                <div class="leader-info">
+                    <h3>Fasil Efrem</h3>
+                    <div class="title">Export Manager</div>
+                    <p>Managing all export operations, ensuring quality products reach global markets efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="company-story">
+    <div class="container">
+        <div class="story-grid">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p>Distinct Trading PLC has established itself as a premier import-export company in Ethiopia, dedicated to facilitating international trade with excellence and integrity. Our journey began with a vision to connect Ethiopian agricultural products with global markets while bringing essential industrial and manufacturing inputs to support Ethiopia's growing economy.</p>
+                <p>Today, we are proud to be a trusted partner for international buyers and suppliers, known for our commitment to quality, reliability, and ethical business practices. Our extensive network and deep understanding of both local and international markets enable us to deliver exceptional value to our clients.</p>
+                
+                <div class="mission-vision">
+                    <div class="mv-card">
+                        <h4>Our Mission</h4>
+                        <p>To facilitate ethical and efficient international trade that benefits Ethiopian farmers, industries, and global partners.</p>
+                    </div>
+                    <div class="mv-card">
+                        <h4>Our Vision</h4>
+                        <p>To become Ethiopia's most trusted and innovative import-export company, driving economic growth through trade.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="story-image">
+                <img src="images/company.jpg" alt="Company Office">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="company-values">
+    <div class="container">
+        <h2 style="text-align: center; font-size: 36px; color: #1a3a2a; margin-bottom: 20px;">Our Core Values</h2>
+        <p style="text-align: center; margin-bottom: 40px;">The principles that guide everything we do</p>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-handshake"></i>
+                <h4>Integrity</h4>
+                <p>We conduct business with honesty and transparency</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-star"></i>
+                <h4>Quality</h4>
+                <p>Committed to delivering premium products</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-users"></i>
+                <h4>Partnership</h4>
+                <p>Building lasting relationships with clients</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-chart-line"></i>
+                <h4>Innovation</h4>
+                <p>Continuously improving our processes</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Distinct Trading PLC. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

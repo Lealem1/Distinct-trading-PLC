@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Distinct Trading PLC - Import & Export</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fffaf5;
+            color: #2c1810;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        header {
+            background: #1a3a2a;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Logo styles - CIRCLE LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c67b3d;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* Desktop Navigation - Visible on Desktop only */
+        .top-nav {
+            display: flex;
+            gap: 35px;
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .top-nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hamburger Menu Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* Sidebar Menu */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #1a3a2a;
+            z-index: 999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 80px 25px 30px;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 1001;
+        }
+
+        .close-sidebar:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .mobile-menu-section {
+            margin-bottom: 25px;
+        }
+
+        .mobile-menu-title {
+            color: #c67b3d;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-left: 3px solid #c67b3d;
+            padding-left: 10px;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu-links a {
+            color: #e8e0d5;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+            padding: 8px 0;
+            padding-left: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-menu-links a:hover {
+            color: #c67b3d;
+            transform: translateX(5px);
+        }
+
+        .mobile-menu-links a i {
+            width: 25px;
+            font-size: 18px;
+        }
+
+        /* ========== HERO SLIDESHOW ========== */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 0 5%;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .slide-content h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .slide-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #c67b3d;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 24px;
+        }
+
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        /* ========== STATS SECTION ========== */
+        .stats {
+            padding: 60px 0;
+            background: linear-gradient(rgba(26, 58, 42, 0.85), rgba(26, 58, 42, 0.85)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 30px;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+        /* ========== SECTION TITLES ========== */
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 50px;
+        }
+
+        /* ========== EXPORT SECTION ========== */
+        #export {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/back1.JPG);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0;
+        }
+
+        /* ========== IMPORT SECTION ========== */
+        .import-section {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(images/back1.JPG);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0;
+        }
+
+        /* ========== FARM SECTION ========== */
+        .farm-section {
+            position: relative;
+            background: linear-gradient(rgba(26, 58, 42, 0.85), rgba(26, 58, 42, 0.85)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 60px 0;
+        }
+
+        /* ========== VIDEO SECTION WITH BLURRY BACKGROUND ========== */
+        .local-video-section {
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .local-video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/buna.JPG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px) brightness(0.7);
+            transform: scale(1.05);
+            z-index: 0;
+        }
+
+        .local-video-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .local-video-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .local-video-section .section-title {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .local-video-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .local-video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ========== PRODUCT GRID ========== */
+        .category-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #c67b3d;
+            border-left: 4px solid #c67b3d;
+            padding-left: 15px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a3a2a;
+        }
+
+        .product-info p {
+            font-size: 13px;
+            color: #6c757d;
+            margin-bottom: 12px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: transparent;
+            border: 2px solid #c67b3d;
+            color: #c67b3d;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .explore-btn:hover {
+            background: #c67b3d;
+            color: white;
+        }
+
+        /* ========== FARM GRID ========== */
+        .farm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .farm-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .farm-stat {
+            text-align: center;
+        }
+
+        .farm-stat .number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #c67b3d;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #c67b3d;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #9c5a2a;
+            transform: translateY(-2px);
+        }
+
+        /* ========== SCROLL TO TOP ========== */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: #c67b3d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 99;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #0d2818;
+            color: #d4c4b5;
+            padding: 50px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col a {
+            color: #d4c4b5;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #f1b17d;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            color: black;
+        }
+
+        .social-icons a {
+            width: 35px;
+            height: 35px;
+            background: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #0e4a1b;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #48f29d;
+            font-size: 12px;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .farm-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .farm-stats {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .header-container {
+                justify-content: space-between;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .category-title {
+                font-size: 24px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 32px;
+            }
+            
+            .slide-content h1 {
+                font-size: 32px;
+            }
+            
+            .slide-content p {
+                font-size: 16px;
+            }
+            
+            .prev, .next {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+            
+            .farm-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .logo-text h1 {
+                font-size: 16px;
+            }
+            
+            .logo-text p {
+                font-size: 8px;
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Distinct Trading Logo" class="logo-img" onerror="this.src='https://placehold.co/55x55?text=DT'">
+            <div class="logo-text">
+                <h1>DISTINCT TRADING</h1>
+                <p>IMPORT & EXPORT PLC</p>
+            </div>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <div class="top-nav">
+            <a href="index.html">HOME</a>
+            <a href="ceo.html">COMPANY</a>
+            <a href="export.html">EXPORT</a>
+            <a href="import.html">IMPORT</a>
+            <a href="contact.html">CONTACT US</a>
+        </div>
+        
+        <!-- Hamburger Menu Button (visible on mobile) -->
+        <div class="hamburger" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+<!-- Sidebar Menu (slides from right) -->
+<div class="mobile-sidebar" id="mobileSidebar">
+    <div class="close-sidebar" onclick="closeSidebar()">
+        <i class="fas fa-times"></i>
+    </div>
+    
+    <div class="mobile-menu-section">
+        <div class="mobile-menu-title">MENU</div>
+        <div class="mobile-menu-links">
+            <a href="index.html" onclick="closeSidebar()"><i class="fas fa-home"></i> HOME</a>
+            <a href="ceo.html" onclick="closeSidebar()"><i class="fas fa-building"></i> COMPANY</a>
+            <a href="export.html" onclick="closeSidebar()"><i class="fas fa-arrow-up"></i> EXPORT</a>
+            <a href="import.html" onclick="closeSidebar()"><i class="fas fa-arrow-down"></i> IMPORT</a>
+            <a href="contact.html" onclick="closeSidebar()"><i class="fas fa-envelope"></i> CONTACT</a>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- Hero Slideshow -->
+<section class="hero">
+    <div class="slideshow-container">
+        <div class="slide active" style="background-image: url(images/buna.JPG);">
+            <div class="slide-content">
+                <h1>Distinct Trading PLC</h1>
+                <p>Ethiopia's Premier Import & Export Company</p>
+                <a href="#export" class="btn">Explore Our Products →</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url(images/buna1.JPG);">
+            <div class="slide-content">
+                <h1>Quality Agricultural Commodities</h1>
+                <p>Sesame Seeds, Coffee, Pulses & More</p>
+                <a href="#export" class="btn">View Exports →</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url(images/buna2.JPG);">
+            <div class="slide-content">
+                <h1>Quality Agricultural Commodities</h1>
+                <p>Sesame Seeds, Coffee, Pulses & More</p>
+                <a href="#export" class="btn">View Exports →</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url(images/buna3.JPG);">
+            <div class="slide-content">
+                <h1>Quality Agricultural Commodities</h1>
+                <p>Sesame Seeds, Coffee, Pulses & More</p>
+                <a href="#export" class="btn">View Exports →</a>
+            </div>
+        </div>
+        <div class="prev" onclick="changeSlide(-1)">❮</div>
+        <div class="next" onclick="changeSlide(1)">❯</div>
+        <div class="slide-dots">
+            <div class="dot active" onclick="currentSlide(0)"></div>
+            <div class="dot" onclick="currentSlide(1)"></div>
+            <div class="dot" onclick="currentSlide(2)"></div>
+            <div class="dot" onclick="currentSlide(3)"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<div class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div><div class="stat-number">2,000+</div><div>Hectares Farm Land</div></div>
+            <div><div class="stat-number">200+</div><div>Containers/Month</div></div>
+            <div><div class="stat-number">15+</div><div>Export Countries</div></div>
+            <div><div class="stat-number">24/7</div><div>Customer Support</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Video Section with Blurry Background -->
+<section class="local-video-section">
+    <div class="container">
+        <h2 class="section-title">Our Company in Action</h2>
+        <div class="local-video-wrapper">
+            <video controls poster="images/video-poster.jpg">
+                <source src="images/company-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
+
+<!-- Export Products Section -->
+<section id="export" class="products">
+    <div class="container">
+        <h2 class="section-title">Export Products</h2>
+        <p class="section-subtitle">Premium Ethiopian agricultural commodities for global markets</p>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/sesame.jpg);"></div>
+                <div class="product-info">
+                    <h3>Sesame Seeds</h3>
+                    <p>Whitish sesame seeds - Humera & Wolega types</p>
+                    <a href="products.html?product=sesame" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/mung.jpg);"></div>
+                <div class="product-info">
+                    <h3>Mung Seed (ማሾ)</h3>
+                    <p>Premium quality green mung beans</p>
+                    <a href="products.html?product=mung" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/soybeans.jpg);"></div>
+                <div class="product-info">
+                    <h3>Soybeans</h3>
+                    <p>Non-GMO soybeans, high protein content</p>
+                    <a href="products.html?product=soybeans" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/coffee.jpg);"></div>
+                <div class="product-info">
+                    <h3>Coffee</h3>
+                    <p>Premium Ethiopian coffee</p>
+                    <a href="products.html?product=coffee" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/nug.jpg);"></div>
+                <div class="product-info">
+                    <h3>ኑግ (Nug/ Niger Seed)</h3>
+                    <p>High-quality oil seeds</p>
+                    <a href="products.html?product=nug" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/glue.jpg);"></div>
+                <div class="product-info">
+                    <h3>Glue (ሙጫ)</h3>
+                    <p>Industrial grade adhesive products</p>
+                    <a href="products.html?product=glue" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/kidneybeans.jpg);"></div>
+                <div class="product-info">
+                    <h3>Red Kidney Beans</h3>
+                    <p>Sourced from Gojam, Gondar & Southern Ethiopia</p>
+                    <a href="products.html?product=kidneybeans" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/pulses.jpg);"></div>
+                <div class="product-info">
+                    <h3>Seasonal Pulses & Crops</h3>
+                    <p>Various crops from Gojam, Gondar & Southern Ethiopia</p>
+                    <a href="products.html?product=pulses" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Import Products Section -->
+<section class="import-section">
+    <div class="container">
+        <h2 class="section-title">Import Products</h2>
+        <p class="section-subtitle">Quality products imported to serve Ethiopian market</p>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/palmoil.jpg);"></div>
+                <div class="product-info">
+                    <h3>Palm Oil</h3>
+                    <p>200 containers / 4 million liters per month</p>
+                    <a href="products.html?product=palmoil" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/sunfloweroil.jpg);"></div>
+                <div class="product-info">
+                    <h3>Sunflower Oil</h3>
+                    <p>Premium quality cooking oil</p>
+                    <a href="products.html?product=sunfloweroil" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/steelbars.jpg);"></div>
+                <div class="product-info">
+                    <h3>Steel Bars</h3>
+                    <p>6mm to 24mm sizes. Sourced from Turkey</p>
+                    <a href="products.html?product=steelbars" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/trucks.jpg);"></div>
+                <div class="product-info">
+                    <h3>Heavy-Duty Trucks</h3>
+                    <p>Industrial vehicles for commercial use</p>
+                    <a href="products.html?product=trucks" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/agrochemicals.jpg);"></div>
+                <div class="product-info">
+                    <h3>Agricultural Chemicals</h3>
+                    <p>Pesticides, herbicides & fertilizers</p>
+                    <a href="products.html?product=agrochemicals" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/tires.jpg);"></div>
+                <div class="product-info">
+                    <h3>Tires</h3>
+                    <p>For transport vehicles. Quality assured</p>
+                    <a href="products.html?product=tires" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/induchem.jpg);"></div>
+                <div class="product-info">
+                    <h3>Industrial Chemicals</h3>
+                    <p>High-quality industrial chemicals for manufacturing</p>
+                    <a href="products.html?product=induchem" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image" style="background-image: url(images/plasticraw.jpg);"></div>
+                <div class="product-info">
+                    <h3>Plastic Raw Materials</h3>
+                    <p>PP, PE, PVC granules for plastic manufacturing</p>
+                    <a href="products.html?product=plasticraw" class="explore-btn">View Details →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Farm Section -->
+<section id="infrastructure" class="farm-section">
+    <div class="container">
+        <div class="farm-grid">
+            <div>
+                <h2 style="font-size: 36px; margin-bottom: 20px;">Our Farm & Infrastructure</h2>
+                <p style="margin-bottom: 20px;">Distinct Trading PLC owns <strong>2,000 hectares</strong> of farmland in <strong>Gondar Humera</strong>, Amhara region, dedicated to producing premium agricultural commodities.</p>
+                <p>We operate modern sesame seed cleaning machines in <strong>Humera and Metema</strong>, ensuring the highest quality standards for our export products.</p>
+                <div class="farm-stats">
+                    <div class="farm-stat">
+                        <div class="number">2,000</div>
+                        <p>Hectares of Farmland</p>
+                    </div>
+                    <div class="farm-stat">
+                        <div class="number">2</div>
+                        <p>Processing Locations</p>
+                    </div>
+                    <div class="farm-stat">
+                        <div class="number">100%</div>
+                        <p>Quality Assurance</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img src="images/farm1.JPG" alt="Farmland" style="width: 100%; border-radius: 15px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>DISTINCT TRADING PLC</h4>
+                <p>Premium import-export company based in Addis Ababa, Ethiopia.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61590008597055" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://t.me/betselot_aklilu" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.linkedin.com/in/distinct-trading-plc-42a686411" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/betselot_aklilu" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>EXPORT</h4>
+                <a href="products.html?product=sesame">Sesame Seeds</a>
+                <a href="products.html?product=mung">Mung Seed (ማሾ)</a>
+                <a href="products.html?product=soybeans">Soybeans</a>
+                <a href="products.html?product=coffee">Coffee</a>
+                <a href="products.html?product=nug">ኑግ (Nug)</a>
+                <a href="products.html?product=glue">Glue (ሙጫ)</a>
+            </div>
+            
+            <div class="footer-col">
+                <h4>IMPORT</h4>
+                <a href="products.html?product=palmoil">Edible Oil</a>
+                <a href="products.html?product=steelbars">Steel Products</a>
+                <a href="products.html?product=trucks">Heavy Trucks</a>
+                <a href="products.html?product=agrochemicals">Agro Chemicals</a>
+                <a href="products.html?product=tires">Tires</a>
+                <a href="products.html?product=induchem">Industrial Chemicals</a>
+                <a href="products.html?product=plasticraw">Plastic Raw Materials</a>
+            </div>
+            
+            <div class="footer-col">
+                <h4>INFRASTRUCTURE</h4>
+                <a href="#">Gondar Humera Farm</a>
+            </div>
+            
+            <div class="footer-col">
+                <h4>SUPPORT</h4>
+                <a href="ceo.html">Company</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Distinct Trading PLC. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+    // Get elements
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('overlay');
+    
+    // Function to open sidebar
+    function openSidebar() {
+        mobileSidebar.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        hamburgerBtn.classList.add('active');
+    }
+    
+    // Function to close sidebar (make it global so onclick works)
+    window.closeSidebar = function() {
+        mobileSidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        hamburgerBtn.classList.remove('active');
+    }
+    
+    // Open sidebar when clicking hamburger button
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', openSidebar);
+    }
+    
+    // Slideshow functionality
+    let slides = document.querySelectorAll('.slide');
+    let dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    let slideInterval;
+    
+    function showSlide(index) {
+        if (!slides.length) return;
+        slides.forEach(function(s) { s.classList.remove('active'); });
+        dots.forEach(function(d) { d.classList.remove('active'); });
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
+    }
+    
+    function changeSlide(direction) {
+        let newIndex = currentIndex + direction;
+        if (newIndex < 0) newIndex = slides.length - 1;
+        if (newIndex >= slides.length) newIndex = 0;
+        showSlide(newIndex);
+        resetInterval();
+    }
+    
+    function currentSlide(index) {
+        showSlide(index);
+        resetInterval();
+    }
+    
+    function nextSlide() {
+        let newIndex = (currentIndex + 1) % slides.length;
+        showSlide(newIndex);
+    }
+    
+    function resetInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+    
+    if (slides.length > 0) {
+        slideInterval = setInterval(nextSlide, 5000);
+        window.changeSlide = changeSlide;
+        window.currentSlide = currentSlide;
+    }
+    
+    // Scroll to top
+    window.onscroll = function() {
+        const btn = document.getElementById('scrollTop');
+        if (btn) {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.opacity = '1';
+            } else {
+                btn.style.opacity = '0';
+            }
+        }
+    }
+    
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Products - Distinct Trading PLC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f5f5f0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        header { background: #1a3a2a; color: white; padding: 20px 0; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Logo styles - CIRCLE LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c67b3d;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .back-btn { padding: 10px 25px; background: #c67b3d; color: white; text-decoration: none; border-radius: 30px; }
+        .back-btn:hover { background: #9c5a2a; }
+        
+        .import-page { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/buna.JPG'); background-size: cover; background-position: center; background-attachment: fixed; padding: 120px 0 60px; }
+        .page-title { text-align: center; color: white; margin-bottom: 50px; }
+        .page-title h1 { font-size: 48px; margin-bottom: 10px; }
+        .page-title p { font-size: 18px; opacity: 0.9; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .product-card { background: rgba(255,255,255,0.95); border-radius: 15px; overflow: hidden; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-image { height: 220px; background-size: cover; background-position: center; }
+        .product-info { padding: 20px; text-align: center; }
+        .product-info h3 { font-size: 22px; color: #1a3a2a; margin-bottom: 10px; }
+        .product-info p { color: #6c757d; margin-bottom: 15px; }
+        .btn-details { display: inline-block; padding: 8px 20px; background: transparent; border: 2px solid #c67b3d; color: #c67b3d; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s; }
+        .btn-details:hover { background: #c67b3d; color: white; }
+        
+        footer { background: #0d2818; color: #d4c4b5; text-align: center; padding: 30px; margin-top: 60px; }
+        
+        @media (max-width: 768px) { 
+            .page-title h1 { font-size: 32px; } 
+            .product-grid { grid-template-columns: 1fr; }
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            .logo-text h1 {
+                font-size: 16px;
+            }
+            .logo-text p {
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://placehold.co/55x55?text=DT'">
+            <div class="logo-text">
+                <h1>DISTINCT TRADING</h1>
+                <p>IMPORT & EXPORT PLC</p>
+            </div>
+        </div>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+</header>
+
+<section class="import-page">
+    <div class="container">
+        <div class="page-title">
+            <h1>Import Products</h1>
+            <p>Quality products imported to serve Ethiopian market</p>
+        </div>
+        <div class="product-grid">
+            <!-- EXISTING PRODUCTS - Palm Oil -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/palmoil.jpg');"></div>
+                <div class="product-info">
+                    <h3>Palm Oil</h3>
+                    <p>200 containers / 4 million liters per month. Premium quality.</p>
+                    <a href="products.html?product=palmoil" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Sunflower Oil -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/sunfloweroil.jpg');"></div>
+                <div class="product-info">
+                    <h3>Sunflower Oil</h3>
+                    <p>Premium quality cooking oil for healthy cooking.</p>
+                    <a href="products.html?product=sunfloweroil" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Steel Bars -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/steelbars.jpg');"></div>
+                <div class="product-info">
+                    <h3>Steel Bars</h3>
+                    <p>6mm to 24mm sizes. Sourced from Turkey.</p>
+                    <a href="products.html?product=steelbars" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Heavy-Duty Trucks -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/trucks.jpg');"></div>
+                <div class="product-info">
+                    <h3>Heavy-Duty Trucks</h3>
+                    <p>Industrial vehicles for commercial use.</p>
+                    <a href="products.html?product=trucks" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - CKD Products -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/ckd.jpg');"></div>
+                <div class="product-info">
+                    <h3>CKD Products</h3>
+                    <p>Completely Knocked Down products for assembly plants.</p>
+                    <a href="products.html?product=ckd" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Tires -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/tires.jpg');"></div>
+                <div class="product-info">
+                    <h3>Tires</h3>
+                    <p>For transport vehicles. Quality assured.</p>
+                    <a href="products.html?product=tires" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Agricultural Chemicals -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/agrochemicals.jpg');"></div>
+                <div class="product-info">
+                    <h3>Agricultural Chemicals</h3>
+                    <p>Pesticides, herbicides & fertilizers.</p>
+                    <a href="products.html?product=agrochemicals" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - PP Bags Raw Materials -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/ppbags.jpg');"></div>
+                <div class="product-info">
+                    <h3>PP Bags Raw Materials</h3>
+                    <p>For PP bags factory manufacturing.</p>
+                    <a href="products.html?product=ppbags" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Soap Factory Raw Materials -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/soapmaterials.jpg');"></div>
+                <div class="product-info">
+                    <h3>Soap Factory Raw Materials</h3>
+                    <p>Raw materials for soap production.</p>
+                    <a href="products.html?product=soapmaterials" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Carton Factory Raw Materials -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/cartonmaterials.jpg');"></div>
+                <div class="product-info">
+                    <h3>Carton Factory Raw Materials</h3>
+                    <p>Raw materials for carton manufacturing.</p>
+                    <a href="products.html?product=cartonmaterials" class="btn-details">View Details →</a>
+                </div>
+            </div>
+            
+            <!-- EXISTING PRODUCTS - Paper & Spare Parts -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/paperparts.jpg');"></div>
+                <div class="product-info">
+                    <h3>Paper & Spare Parts</h3>
+                    <p>Industrial paper products and spare parts.</p>
+                    <a href="products.html?product=paperparts" class="btn-details">View Details →</a>
+                </div>
+            </div>
+
+            <!-- ========== NEW: INDUSTRIAL CHEMICALS ========== -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/induchem.jpg');"></div>
+                <div class="product-info">
+                    <h3>Industrial Chemicals</h3>
+                    <p>High-quality industrial chemicals for manufacturing and processing industries.</p>
+                    <a href="products.html?product=induchem" class="btn-details">View Details →</a>
+                </div>
+            </div>
+
+            <!-- ========== NEW: PLASTIC RAW MATERIALS ========== -->
+            <div class="product-card">
+                <div class="product-image" style="background-image: url('images/plasticraw.jpg');"></div>
+                <div class="product-info">
+                    <h3>Plastic Raw Materials</h3>
+                    <p>Raw materials for plastic manufacturing. High quality raw material.</p>
+                    <a href="products.html?product=plasticraw" class="btn-details">View Details →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Distinct Trading PLC. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
